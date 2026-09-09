@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background: var(--surface);
+}
+:root {
+    --surface: #d7d7d7;
+    --panel: #cfcfcf;
+    --panel-raised: #dddddd;
+    --border-dark: #8f8f8f;
+    --border-light: #f2f2f2;
+    font-size: 13px;
+    color: var(--text);
+    --tn-ink: #343b58;
+    --tn-comment: #6c6e75;
+    --tn-red: #8c4351;
+    --tn-orange: #965027;
+    --tn-yellow: #8f5e15;
+    --tn-green: #385f0d;
+    --tn-teal: #33635c;
+    --tn-cyan: #0f4b6e;
+    --tn-blue: #2959aa;
+    --tn-blue-muted: #34548a;
+    --tn-magenta: #5a3e8e;
+    --tn-paper: #e6e7ed;
+    --text: var(--tn-ink);
+    --text-soft: var(--tn-comment);
+    --accent: var(--tn-blue-muted);
+    --accent-strong: var(--tn-blue);
+    --field: var(--tn-paper);
+    --row-current: #c7cfe6;
+    --selection: rgb(41 89 170 / 22%);
+    --memory-pc: #f5bbc2;
+    --memory-io: #e9e1d2;
+    --memory-previous-pc: #f8dfe2;
+    --memory-pc-border: #c43f50;
+    --memory-stack: #fff1b8;
+    --memory-sp: #edca59;
+    --memory-sp-border: #b98308;
+    --instruction-breakpoint: #f8dfe2;
+    --instruction-effect: #b9d6f2;
+    --instruction-effect-border: #3e73b8;
+    --editor-gutter: #d8dae2;
+
+    --font-editor: "JetBrains Mono", ui-monospace, "Consolas", monospace;
+    --font-ui: "JetBrains Mono", ui-monospace, "Consolas", monospace;
+
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+}
+::selection {
+    background: var(--selection);
+}
+:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 1px;
+}
+button,
+input,
+select,
+textarea {
+    border-radius: 0;
+    font: inherit;
+}
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+::-webkit-scrollbar-track {
+    background: var(--panel);
+}
+::-webkit-scrollbar-thumb {
+    border: 1px solid var(--border-dark);
+    background: var(--panel-raised);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--field);
+}
+::-webkit-scrollbar-corner {
+    background: var(--panel);
+}
+@supports not selector(::-webkit-scrollbar) {
+    :root {
+        scrollbar-color: var(--border-dark) var(--panel);
+    }
+}

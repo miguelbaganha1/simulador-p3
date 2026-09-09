@@ -1,0 +1,36 @@
+.register-panel {
+    grid-area: registers;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+.register-section {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+}
+.register-table th,
+.flag-row th {
+    color: var(--tn-magenta);
+}
+.register-table th {
+    padding: 2px 6px 2px 0;
+    text-align: left;
+}
+.register-table td {
+    padding: 1px 0;
+}
+.flag-row th,
+.flag-row td {
+    padding: 2px 1px;
+    text-align: center;
+}
+.flag-row .cell {
+    min-width: 0;
+    padding: 0 4px;
+    text-align: center;
+}
+.flag-section {
+    flex: 0;
+    height: auto;
+}

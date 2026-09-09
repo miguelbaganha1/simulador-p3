@@ -1,0 +1,283 @@
+.control-panel {
+    grid-area: control;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.control-panel-body {
+    flex: auto;
+}
+.control-bar {
+    flex: none;
+    display: grid;
+    gap: 6px;
+    width:100%;
+}
+.mode-bar-button {
+    flex: none;
+}
+.control-bar-button {
+    min-height: 32px;
+}
+.run-control {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 76px;
+    min-height: 32px;
+    overflow: hidden;
+    border: 1px solid var(--border-dark);
+    background: var(--panel-raised);
+    box-shadow:
+        inset 1px 1px 0 var(--border-light),
+        inset -1px -1px 0 rgb(0 0 0 / 14%);
+}
+.run-interval-select,
+.run-button {
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+.run-interval-select {
+    padding: 0 5px;
+    border-left: 1px solid var(--border-dark);
+    cursor: pointer;
+}
+.run-button {
+    padding: 6px 14px;
+    cursor: pointer;
+}
+.run-button:hover:enabled,
+.run-interval-select:hover:enabled {
+    background: var(--field);
+}
+.run-button:active:enabled {
+    padding: 7px 14px 5px;
+    background: var(--panel);
+    box-shadow:
+        inset 1px 1px 0 rgb(0 0 0 / 14%),
+        inset -1px -1px 0 var(--border-light);
+}
+.run-interval-select:focus-visible,
+.run-button:focus-visible {
+    z-index: 1;
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+}
+.run-control-disabled {
+    background: var(--panel);
+    box-shadow: none;
+}
+.run-control-disabled .run-interval-select,
+.run-control-disabled .run-button {
+    color: var(--text-soft);
+    cursor: default;
+}
+.control-bar-button,
+.mode-bar-button {
+    appearance: none;
+    padding: 6px 14px;
+    border: 1px solid var(--border-dark);
+    background: var(--panel-raised);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow:
+        inset 1px 1px 0 var(--border-light),
+        inset -1px -1px 0 rgb(0 0 0 / 14%);
+}
+.control-bar-button:hover:enabled,
+.mode-bar-button:hover {
+    background: var(--field);
+}
+.control-bar-button:active:enabled,
+.mode-bar-button:active {
+    padding: 7px 14px 5px;
+    background: var(--panel);
+    box-shadow:
+        inset 1px 1px 0 rgb(0 0 0 / 14%),
+        inset -1px -1px 0 var(--border-light);
+}
+.control-bar-button:disabled {
+    background: var(--panel);
+    color: var(--text-soft);
+    box-shadow: none;
+    cursor: default;
+}
+.control-bar-button:focus-visible,
+.mode-bar-button:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 2px;
+}
+.menu-bar {
+    display: flex;
+    flex: none;
+    background-color: var(--panel-raised);
+    border-bottom: 1px solid var(--border-dark);
+    gap: 4px;
+    padding: 4px 2px;
+    align-items: stretch;
+    overflow: visible;
+    user-select: none;
+}
+.menu-bar-item {
+    position: relative;
+    display: flex;
+}
+.menu-bar-button,
+.menu-option {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 13px;
+}
+.menu-bar-button {
+    padding: 2px 8px;
+    cursor: default;
+}
+.menu-bar-button:hover,
+.menu-bar-button:focus-visible,
+.menu-bar-button-open,
+.menu-option:hover,
+.menu-option:focus-visible,
+.menu-option[expanded="true"] {
+    background: var(--accent);
+    color: var(--tn-paper);
+}
+.menu-bar-button:focus-visible,
+.menu-option:focus-visible {
+    outline: none;
+}
+.dropdown-menu {
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 128px;
+    padding: 2px 0;
+    border: 1px solid var(--border-dark);
+    background: var(--panel-raised);
+}
+.menu-option {
+    display: block;
+    width: 100%;
+    padding: 4px 12px;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.menu-option-row {
+    position: relative;
+}
+.edit-menu-value {
+    top: -1px;
+    left: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    min-width: 0;
+    padding: 4px 8px;
+}
+.menu-value {
+    width: 10ch;
+    font: inherit;
+    color: var(--text);
+}
+.menu-value:invalid {
+    border-color: var(--tn-red);
+    background: #f7d9dd;
+}
+.status-bar {
+    display: flex;
+    gap: 16px;
+    flex: none;
+    padding: 3px 10px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border-dark);
+    font-size: 12px;
+    align-items: center;
+}
+.status-bar span {
+    white-space: nowrap;
+}
+.status-memory-button {
+    appearance: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    cursor: default;
+    font: inherit;
+    white-space: nowrap;
+}
+.status-memory-button:hover,
+.status-memory-button:focus-visible {
+    background: var(--accent);
+    color: var(--tn-paper);
+    outline: none;
+}
+.status-memory-button:hover strong,
+.status-memory-button:focus-visible strong {
+    border-color: var(--accent);
+    background: transparent;
+    box-shadow: none;
+}
+.status-bar strong {
+    display: inline-block;
+    min-width: 5ch;
+    margin-left: 2px;
+    padding: 0 6px;
+    border: 1px solid var(--border-dark);
+    background: var(--field);
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 8%);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+}
+.status-message {
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-left: auto;
+    color: var(--text-soft);
+    font-style: italic;
+    white-space: nowrap;
+    scrollbar-color: var(--border-dark) transparent;
+    scrollbar-width: thin;
+}
+.status-message::-webkit-scrollbar {
+    height: 2px;
+}
+.status-message::-webkit-scrollbar-track {
+    background: transparent;
+}
+.status-message::-webkit-scrollbar-thumb {
+    background: var(--border-dark);
+}
+.mode-bar {
+    flex: none;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px 10px;
+    border-top: 1px solid var(--border-dark);
+    background: var(--panel-raised);
+}
+.mode-bar-button + .mode-bar-button {
+    margin-left: -1px;
+}
+.mode-bar-button-current,
+.mode-bar-button-current:hover {
+    position: relative;
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--tn-paper);
+    box-shadow: none;
+}

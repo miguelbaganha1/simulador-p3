@@ -1,0 +1,133 @@
+.main-memory-panel {
+    background: var(--panel-raised);
+    grid-area: memory;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.scroll {
+    flex: auto;
+    min-height: 0;
+    overflow: auto;
+}
+.memory-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--panel-raised);
+}
+.memory-table {
+    display: grid;
+    grid-template-rows: 23px auto;
+}
+.memory-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    grid-row: 1;
+    display: grid;
+    height: 23px;
+}
+.memory-table tbody {
+    position: relative;
+    grid-row: 2;
+    display: grid;
+}
+.memory-table tr {
+    display: grid;
+    grid-template-columns: minmax(72px, 1.3fr) repeat(8, minmax(48px, 1fr));
+    width: 100%;
+}
+.memory-table thead tr {
+    height: 23px;
+}
+.memory-table tbody tr {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.memory-table th,
+.memory-table td {
+    overflow: hidden;
+    line-height: 16px;
+}
+.memory-word {
+    appearance: none;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    text-align: left;
+}
+.memory-word.editable-word:not(:disabled) {
+    cursor: pointer;
+}
+.memory-word.editable-word:disabled {
+    opacity: 1;
+    cursor: default;
+}
+.memory-word.editable-word-input {
+    outline: 1px solid var(--accent-strong);
+    outline-offset: 1px;
+    background: var(--field);
+}
+.memory-table tbody th {
+    color: var(--tn-cyan);
+    font-weight: 400;
+}
+.memory-table tbody td.memory-cell-stack,
+.memory-table tbody tr:hover td.memory-cell-stack {
+    background: var(--memory-stack);
+}
+.memory-table tbody td.memory-cell-accessed,
+.memory-table tbody tr:hover td.memory-cell-accessed {
+    background: var(--instruction-effect);
+    color: #153b67;
+    box-shadow:
+        inset 0 0 0 1px var(--instruction-effect-border),
+        0 0 5px rgb(62 115 184 / 30%);
+    font-weight: 700;
+}
+.memory-table tbody td.memory-cell-sp,
+.memory-table tbody tr:hover td.memory-cell-sp {
+    background: var(--memory-sp);
+    color: #493500;
+    box-shadow:
+        inset 0 0 0 1px var(--memory-sp-border),
+        0 0 5px rgb(185 131 8 / 32%);
+    font-weight: 700;
+}
+.memory-table tbody td.memory-cell-pc,
+.memory-table tbody tr:hover td.memory-cell-pc {
+    background: var(--memory-pc);
+    color: #581923;
+    box-shadow:
+        inset 0 0 0 1px var(--memory-pc-border),
+        0 0 5px rgb(196 63 80 / 34%);
+    font-weight: 700;
+}
+
+.memory-table tbody td.memory-cell-previous-pc,
+.memory-table tbody tr:hover td.memory-cell-previous-pc {
+    background: var(--memory-previous-pc);
+}
+
+.memory-row-io th,
+.memory-row-io td,
+.memory-table tbody tr:where(.memory-row-io):hover :is(th, td) {
+    background: var(--memory-io);
+}
+
+.memory-word-io {
+    cursor: default;
+}
+
+.memory-word-io:focus-visible {
+    outline-offset: -1px;
+}

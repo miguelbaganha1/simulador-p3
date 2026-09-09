@@ -1,0 +1,14 @@
+{
+  "name": "p3-core",
+  "version": "1.0.0",
+  "description": "Estado, ISA e execucao do processador P3.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "types": "dist/index.d.ts"
+}

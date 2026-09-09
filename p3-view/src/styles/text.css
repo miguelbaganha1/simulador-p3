@@ -1,0 +1,152 @@
+.text-window-panel {
+    grid-area: text;
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 551px) 120px;
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 16px;
+    justify-content: center;
+    padding: 12px;
+    overflow: hidden;
+}
+.text-window-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    white-space: pre;
+}
+.text-keyboard-classic {
+    min-width: 0;
+}
+.text-keyboard-row {
+    display: flex;
+    justify-content: center;
+}
+.text-keyboard-row + .text-keyboard-row {
+    margin-top: -1px;
+}
+.text-keyboard-row > .text-keyboard-key + .text-keyboard-key {
+    margin-left: -1px;
+}
+.text-keyboard-operations {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.text-keyboard-operations .text-keyboard-key {
+    flex: none;
+    width: 56px;
+}
+.text-keyboard-operations .text-keyboard-key + .text-keyboard-key {
+    margin-top: -1px;
+}
+.text-keyboard-operations .text-keyboard-key-backspace {
+    width: 120px;
+}
+.text-window-frame {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 0;
+    overflow: hidden;
+    border: 2px solid #252a36;
+    background: #080a0f;
+    box-shadow:
+        0 3px 7px rgb(0 0 0 / 28%),
+        0 0 0 1px #7c8292,
+        inset 0 0 0 1px #000000;
+}
+.text-window-screen {
+    display: grid;
+    grid-template-columns: repeat(80, 1ch);
+    grid-template-rows: repeat(24, 1.08em);
+    align-content: start;
+    justify-content: start;
+    flex: auto;
+    min-width: 0;
+    min-height: 0;
+    padding: 8px 10px;
+    overflow: auto;
+    border: 0;
+    font-size: 13.8px;
+    line-height: 1;
+    cursor: text;
+    outline: 0;
+    background: #080a0f;
+    color: #c0caf5;
+    font-family: var(--font-editor);
+}
+.text-window-cursor {
+    background: #7aa2f7;
+    color: #080a0f;
+    animation: text-window-cursor-blink 1s steps(1, end) infinite;
+}
+.text-keyboard {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 551px) 120px;
+    column-gap: 16px;
+    width: 100%;
+    padding: 8px 0;
+    background: transparent;
+}
+.text-keyboard-key {
+    flex: 0 1 56px;
+    min-width: 32px;
+    height: 36px;
+    padding: 0;
+    appearance: none;
+    border: 1px solid var(--border-dark);
+    background: #eee6cf;
+    color: var(--text);
+    font-family: var(--font-editor);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow:
+        inset 1px 1px 0 var(--border-light),
+        inset -1px -1px 0 rgb(0 0 0 / 14%);
+}
+.text-keyboard-key-space {
+    flex-basis: 300px;
+}
+.text-keyboard-key-shift {
+    flex-basis: 80px;
+}
+.text-keyboard-key-enter {
+    flex-basis: 120px;
+}
+.text-keyboard-key:hover {
+    background: #f6efdc;
+}
+.text-keyboard-key:active,
+.text-keyboard-key.pressed {
+    border-color: var(--accent-strong);
+    background: #bfd4f2;
+    color: var(--text);
+    box-shadow:
+        inset 1px 1px 0 rgb(0 0 0 / 18%),
+        inset -1px -1px 0 var(--border-light);
+}
+.text-keyboard-key:focus-visible {
+    outline: 2px solid #bb9af7;
+    outline-offset: 2px;
+}
+@keyframes text-window-cursor-blink {
+    50% {
+        background: transparent;
+        color: inherit;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .text-window-cursor {
+        animation: none;
+    }
+}

@@ -1,0 +1,10 @@
+@import "./styles/fonts.css";
+@import "./styles/theme.css";
+@import "./styles/layout.css";
+@import "./styles/controls.css";
+@import "./styles/registers.css";
+@import "./styles/memory.css";
+@import "./styles/assembly.css";
+@import "./styles/editor.css";
+@import "./styles/peripherals.css";
+@import "./styles/text.css";

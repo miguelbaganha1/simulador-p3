@@ -1,0 +1,62 @@
+.instruction-panel {
+    grid-area: instr;
+    min-height: 0;
+    overflow: auto;
+}
+.instruction-cell-content {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-color: var(--border-dark) transparent;
+    scrollbar-width: thin;
+}
+.instruction-cell-content::-webkit-scrollbar {
+    height: 2px;
+}
+.instruction-cell-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+.instruction-cell-content::-webkit-scrollbar-thumb {
+    background: var(--border-dark);
+}
+.instruction-table td.assembly-address {
+    color: var(--tn-cyan);
+}
+.instruction-table td.assembly-code {
+    color: var(--text-soft);
+}
+.instruction-table td.assembly-label {
+    color: var(--tn-teal);
+}
+.instruction-table td.assembly-operation {
+    color: var(--tn-magenta);
+    font-weight: 500;
+}
+.instruction-table td[colspan] {
+    color: var(--text-soft);
+    font-style: italic;
+}
+.assembly-breakpoint-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 6px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.breakpoint-instruction-row .assembly-breakpoint-marker {
+    background: var(--memory-pc-border);
+}
+.instruction-table tbody tr.previous-instruction-row td,
+.instruction-table tbody tr.previous-instruction-row:hover td {
+    background: var(--memory-previous-pc);
+}
+.instruction-table tbody tr.current-instruction-row td,
+.instruction-table tbody tr.current-instruction-row:hover td {
+    background: var(--memory-pc);
+    font-weight: 700;
+}
+.current-instruction-row td.assembly-address {
+    box-shadow: inset 3px 0 0 var(--memory-pc-border);
+}

@@ -1,0 +1,17 @@
+{
+  "name": "p3-system",
+  "version": "1.0.0",
+  "description": "Montagem, carga, execu\u00e7\u00e3o e perif\u00e9ricos do simulador P3.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "p3-core": "1.0.0"
+  }
+}

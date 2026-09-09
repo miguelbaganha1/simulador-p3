@@ -1,0 +1,76 @@
+.editor-panel {
+    grid-area: editor;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+.editor-field {
+    display: grid;
+    grid-template-columns: 1.5ch minmax(0, 1fr);
+    flex: auto;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--border-dark);
+    background: var(--field);
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 6%);
+    font-family: var(--font-editor);
+}
+.editor-breakpoint-gutter {
+    min-height: 0;
+    padding: 8px 0;
+    overflow: hidden;
+    border-right: 1px solid var(--border-dark);
+    background: var(--editor-gutter);
+}
+.editor-breakpoint {
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 1.55em;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+    background: transparent;
+}
+.editor-breakpoint-active::before {
+    display: block;
+    width: 1ch;
+    height: 1ch;
+    margin: auto;
+    border-radius: 50%;
+    background: var(--tn-red);
+    content: "";
+}
+.editor-textarea {
+    min-width: 0;
+    min-height: 0;
+    width: 100%;
+    resize: none;
+    border: 0;
+    color: var(--text);
+    font: inherit;
+    padding: 8px;
+    overflow: auto;
+    background: var(--field);
+    caret-color: var(--accent-strong);
+    font-family: var(--font-editor);
+    line-height: 1.55;
+    tab-size: 8;
+}
+.editor-field:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+}
+.editor-textarea:focus-visible {
+    outline: 0;
+}
+.editor-breakpoint:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: -2px;
+}
+.editor-breakpoint:disabled {
+    cursor: default;
+}

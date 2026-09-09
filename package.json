@@ -1,0 +1,25 @@
+{
+  "name": "p3-simulador",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "workspaces": [
+    "p3-core",
+    "p3-system",
+    "p3-view"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace p3-view",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:types": "tsc -p tsconfig.test.json",
+    "build": "npm run build --workspace p3-core && npm run build --workspace p3-system && npm run build --workspace p3-view"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}

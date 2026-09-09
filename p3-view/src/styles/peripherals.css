@@ -1,0 +1,491 @@
+.lcd-panel {
+    grid-area: lcd;
+    justify-self: start;
+    position: relative;
+    isolation: isolate;
+    width: 340px;
+    padding: 9px 10px;
+    border: 2px solid #17371d;
+    border-radius: 7px;
+    background:
+        linear-gradient(90deg, rgb(255 255 255 / 7%), transparent 9%, transparent 91%, rgb(0 0 0 / 12%)),
+        linear-gradient(180deg, #2e6b38 0%, #245b2e 12%, #1d4d27 83%, #286332 100%);
+    box-shadow:
+        0 4px 6px rgb(0 0 0 / 30%),
+        inset 0 1px 1px rgb(255 255 255 / 25%),
+        inset 0 -1px 2px rgb(0 0 0 / 35%);
+}
+.lcd-panel::before,
+.lcd-panel::after {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    content: "";
+    pointer-events: none;
+}
+.lcd-panel::before {
+    background:
+        radial-gradient(circle at 7px 7px, #fff3a1 0 0.5px, #d4bc50 1px 2.5px, #847323 3px 3.5px, #162814 4px, transparent 5px),
+        radial-gradient(circle at calc(100% - 7px) 7px, #fff3a1 0 0.5px, #d4bc50 1px 2.5px, #847323 3px 3.5px, #162814 4px, transparent 5px),
+        radial-gradient(circle at 7px calc(100% - 7px), #fff3a1 0 0.5px, #d4bc50 1px 2.5px, #847323 3px 3.5px, #162814 4px, transparent 5px),
+        radial-gradient(circle at calc(100% - 7px) calc(100% - 7px), #fff3a1 0 0.5px, #d4bc50 1px 2.5px, #847323 3px 3.5px, #162814 4px, transparent 5px);
+    filter: drop-shadow(0 1px 1px rgb(0 0 0 / 65%));
+}
+.lcd-panel::after {
+    background:
+        linear-gradient(#29301a 0 0) left 4px top 6px / 6px 1px no-repeat,
+        linear-gradient(#29301a 0 0) left 6px top 4px / 1px 6px no-repeat,
+        linear-gradient(#29301a 0 0) right 4px top 6px / 6px 1px no-repeat,
+        linear-gradient(#29301a 0 0) right 6px top 4px / 1px 6px no-repeat,
+        linear-gradient(#29301a 0 0) left 4px bottom 6px / 6px 1px no-repeat,
+        linear-gradient(#29301a 0 0) left 6px bottom 4px / 1px 6px no-repeat,
+        linear-gradient(#29301a 0 0) right 4px bottom 6px / 6px 1px no-repeat,
+        linear-gradient(#29301a 0 0) right 6px bottom 4px / 1px 6px no-repeat;
+}
+.lcd-border {
+    position: relative;
+    z-index: 1;
+    padding: 6px 8px;
+    border: 2px solid #0b0d0b;
+    border-radius: 7px;
+    background: linear-gradient(180deg, #292c29 0%, #101210 14%, #101110 84%, #292b29 100%);
+    box-shadow:
+        0 1px 2px rgb(0 0 0 / 60%),
+        inset 0 2px 1px rgb(255 255 255 / 8%),
+        inset 0 -2px 2px rgb(0 0 0 / 65%);
+}
+.lcd-screen {
+    --lcd-glass-top: #9db64d;
+    --lcd-glass-bottom: #8fa945;
+    --lcd-cell: rgb(91 118 41 / 24%);
+    --lcd-ink: #263716;
+
+    display: grid;
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 3px 2px;
+    width: 100%;
+    aspect-ratio: 4.3 / 1;
+    padding: 8px 11px;
+    overflow: hidden;
+    border: 2px solid #080a08;
+    border-radius: 5px;
+    background: linear-gradient(180deg, var(--lcd-glass-top), var(--lcd-glass-bottom));
+    box-shadow:
+        inset 0 3px 5px rgb(35 48 13 / 60%),
+        inset 0 -1px 2px rgb(222 239 126 / 20%),
+        0 1px 1px rgb(255 255 255 / 18%);
+}
+.lcd-screen-on {
+    --lcd-glass-top: #a5bd52;
+    --lcd-glass-bottom: #95af48;
+    --lcd-cell: rgb(81 109 35 / 27%);
+    --lcd-ink: #1f3011;
+}
+.lcd-screen-off {
+    --lcd-glass-top: #91a946;
+    --lcd-glass-bottom: #879f40;
+    --lcd-cell: rgb(87 109 40 / 22%);
+    --lcd-ink: transparent;
+}
+.lcd-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: var(--lcd-cell);
+    color: var(--lcd-ink);
+    font-family: "Courier New", ui-monospace, monospace;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 0 1px rgb(22 38 10 / 40%);
+}
+.led-panel {
+    grid-area: leds;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: start;
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 0;
+}
+.led {
+    display: block;
+    flex: none;
+    width: min(22px, calc(100% / 16));
+    aspect-ratio: 1;
+    border: 2px solid #202020;
+    border-radius: 50%;
+    box-shadow:
+        0 2px 3px rgb(0 0 0 / 38%),
+        0 0 0 1px #747474,
+        inset 0 1px 1px rgb(255 255 255 / 18%);
+}
+.led-off {
+    background:
+        radial-gradient(circle at 36% 28%, rgb(255 255 255 / 42%) 0 3%, transparent 9%),
+        radial-gradient(circle, #64150f 0 38%, #390b08 67%, #170504 100%);
+}
+.led-on {
+    background:
+        radial-gradient(circle at 36% 28%, #ffffff 0 4%, #ffc5b9 5%, transparent 11%),
+        radial-gradient(circle, #ff5b3e 0 30%, #ed210d 58%, #9b0c05 82%, #4e0502 100%);
+    box-shadow:
+        0 0 5px rgb(255 51 31 / 50%),
+        0 2px 3px rgb(0 0 0 / 38%),
+        0 0 0 1px #747474,
+        inset 0 1px 1px rgb(255 255 255 / 24%);
+}
+.display-panel {
+    --display-glow: #ff241f;
+    --display-glow-soft: rgb(255 30 25 / 48%);
+    --display-off: rgb(115 13 11 / 18%);
+
+    position: relative;
+    isolation: isolate;
+    grid-area: display;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    align-items: stretch;
+    place-self: center;
+    width: 400px;
+    max-width: 100%;
+    aspect-ratio: 2.8 / 1;
+    padding: 18px 20px;
+    overflow: hidden;
+    border: 3px solid #111312;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #303332 0%, #171918 13%, #090a0a 53%, #181a19 88%, #2a2c2b 100%);
+    box-shadow:
+        0 5px 7px rgb(0 0 0 / 42%),
+        0 0 0 1px #5b5d5c,
+        inset 0 2px 1px rgb(255 255 255 / 14%),
+        inset 0 -2px 3px rgb(0 0 0 / 82%);
+}
+.display-panel::before,
+.display-panel::after {
+    position: absolute;
+    content: "";
+    pointer-events: none;
+}
+.display-panel::before {
+    inset: 9px;
+    z-index: -1;
+    border: 2px solid #050606;
+    border-radius: 5px;
+    background:
+        radial-gradient(circle at 50% 35%, rgb(105 12 10 / 24%), transparent 62%),
+        linear-gradient(180deg, #270806 0%, #160403 48%, #230706 100%);
+    box-shadow:
+        inset 0 4px 7px rgb(0 0 0 / 86%),
+        inset 0 -1px 2px rgb(135 28 23 / 20%),
+        0 1px 1px rgb(255 255 255 / 10%);
+}
+.display-panel::after {
+    inset: 12px;
+    z-index: 2;
+    border-radius: 3px;
+    background: linear-gradient(115deg, rgb(255 255 255 / 3%), transparent 28% 72%, rgb(255 90 70 / 3%));
+}
+.display-digit {
+    position: relative;
+    z-index: 1;
+    display: block;
+    min-width: 0;
+    min-height: 0;
+}
+.display-panel .display {
+    position: absolute;
+    display: block;
+    border-radius: 2px;
+}
+.display-panel :is(.segment-a, .segment-g, .segment-d) {
+    left: 18%;
+    width: 64%;
+    height: 10%;
+    clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%);
+}
+.display-panel .segment-a {
+    top: 0;
+}
+.display-panel .segment-g {
+    top: 45%;
+}
+.display-panel .segment-d {
+    bottom: 0;
+}
+.display-panel :is(.segment-b, .segment-c, .segment-e, .segment-f) {
+    width: 11%;
+    height: 38%;
+    clip-path: polygon(50% 0, 100% 8%, 100% 92%, 50% 100%, 0 92%, 0 8%);
+}
+.display-panel :is(.segment-b, .segment-f) {
+    top: 7%;
+}
+.display-panel :is(.segment-c, .segment-e) {
+    bottom: 7%;
+}
+.display-panel :is(.segment-e, .segment-f) {
+    left: 8%;
+}
+.display-panel :is(.segment-b, .segment-c) {
+    right: 8%;
+}
+.display-panel .segment-on {
+    background: linear-gradient(90deg, #db1513, var(--display-glow) 38% 62%, #d91210);
+    box-shadow:
+        0 0 3px var(--display-glow),
+        0 0 8px var(--display-glow-soft);
+}
+.display-panel .segment-off {
+    background: var(--display-off);
+    box-shadow: inset 0 0 2px rgb(0 0 0 / 42%);
+}
+.switch-panel {
+    --switch-base-size: clamp(34px, 3.9vw, 50px);
+    --switch-collar-size: clamp(18px, 1.9vw, 24px);
+    --switch-handle-width: clamp(11px, 1.17vw, 15px);
+
+    grid-area: switches;
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    align-self: end;
+    justify-self: start;
+    width: 100%;
+    max-width: 615px;
+}
+.switch-control {
+    appearance: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    padding: 0 2px 2px;
+    border: 0;
+    background: transparent;
+    color: #34373b;
+    cursor: pointer;
+    user-select: none;
+}
+.switch-track {
+    position: relative;
+    display: block;
+    width: min(58px, 100%);
+    height: 120px;
+    flex: none;
+}
+.switch-track::before {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    z-index: 1;
+    width: var(--switch-base-size);
+    height: var(--switch-base-size);
+    border: 1px solid #171815;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 36% 29%, rgb(255 255 255 / 82%) 0 3%, transparent 8%),
+        radial-gradient(circle,
+            #11120f 0 22%,
+            #4b4c46 23% 29%,
+            #c9c8bd 30% 36%,
+            #41423d 37% 45%,
+            #deddd3 46% 54%,
+            #777871 55% 63%,
+            #252621 64% 70%,
+            #aaa9a1 71% 77%,
+            #191a17 78% 100%);
+    box-shadow:
+        0 4px 5px rgb(0 0 0 / 38%),
+        inset 0 1px 1px rgb(255 255 255 / 42%),
+        inset 0 -2px 2px rgb(0 0 0 / 58%);
+    content: "";
+    transform: translate(-50%, -50%);
+}
+.switch-track::after {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    z-index: 3;
+    width: var(--switch-collar-size);
+    height: var(--switch-collar-size);
+    border: 2px solid #10110f;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 38% 30%, #b9b8ad 0 6%, transparent 10%),
+        radial-gradient(circle, #20211d 0 38%, #080907 54%, #5e5e57 70%, #151613 100%);
+    box-shadow:
+        0 1px 2px rgb(0 0 0 / 68%),
+        inset 0 1px 1px rgb(255 255 255 / 22%);
+    content: "";
+    transform: translate(-50%, -50%);
+}
+.switch-handle {
+    position: absolute;
+    top: calc(60px - var(--switch-base-size) * 1.2);
+    left: 50%;
+    z-index: 2;
+    display: block;
+    width: var(--switch-handle-width);
+    height: calc(var(--switch-base-size) * 1.22);
+    border: 2px solid #292a26;
+    border-radius: 9px;
+    background: linear-gradient(90deg, #363732 0%, #a8a79d 18%, #f3f1e8 43%, #b2b1a7 61%, #5a5a54 79%, #22231f 100%);
+    box-shadow:
+        2px 3px 3px rgb(0 0 0 / 42%),
+        inset 1px 0 1px rgb(255 255 255 / 70%),
+        inset -1px 0 1px rgb(0 0 0 / 48%);
+    transform: translateX(-50%);
+    transition: transform 140ms ease-in-out;
+}
+.switch-handle::before {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 78%);
+    box-shadow: 0 0 2px rgb(255 255 255 / 55%);
+    content: "";
+}
+.switch-down .switch-handle {
+    transform: translate(-50%, calc(var(--switch-base-size) * 1.16));
+}
+.switch-down .switch-handle::before {
+    top: auto;
+    bottom: 2px;
+}
+.switch-label {
+    display: block;
+    min-width: 2ch;
+    padding: 1px 3px 0;
+    color: #4c4f52;
+    font: 700 11px/1.2 ui-monospace, "Consolas", monospace;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    text-shadow: 0 1px 0 rgb(255 255 255 / 80%);
+}
+.switch-control:hover .switch-track {
+    filter: brightness(1.06);
+}
+.switch-control:active .switch-track {
+    filter: brightness(0.94);
+}
+.switch-control:focus-visible {
+    border-radius: 2px;
+    outline: 2px solid var(--accent-strong, #2959aa);
+    outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+    .switch-handle {
+        transition: none;
+    }
+}
+.interrupt-button-panel {
+    grid-area: buttons;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px 16px;
+    align-self: start;
+    justify-self: end;
+    width: 100%;
+    max-width: 615px;
+    margin-top: 32px;
+}
+.interrupt-button {
+    --interrupt-cap-travel: 0px;
+    --interrupt-cap-inset: 0;
+    --interrupt-cap-shadow:
+        inset 0 2px 0 rgb(255 255 255 / 24%),
+        inset 0 -3px 4px rgb(0 0 0 / 50%);
+    --interrupt-cap-return: cubic-bezier(0.34, 1.4, 0.64, 1);
+    --interrupt-lift: 0 3px 4px -1px rgb(0 0 0 / 40%);
+    --interrupt-legend: rgb(212 232 166 / 74%);
+
+    position: relative;
+    isolation: isolate;
+    min-width: 0;
+    aspect-ratio: 2.05 / 1;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 3px;
+    background:
+        linear-gradient(
+            180deg,
+            rgb(4 5 5 / 95%) 0 10px,
+            rgb(6 7 7 / 60%) 18px
+        );
+    box-shadow:
+        0 0 0 1px rgb(0 0 0 / 45%),
+        var(--interrupt-lift);
+    font: 20px/1 ui-monospace, "Consolas", monospace;
+    cursor: pointer;
+    transition: box-shadow 150ms ease-out;
+}
+.interrupt-button-cap {
+    position: absolute;
+    inset: var(--interrupt-cap-inset);
+    display: grid;
+    place-items: center;
+    background:
+        linear-gradient(
+            180deg,
+            rgb(255 255 255 / 14%) 0%,
+            rgb(255 255 255 / 4%) 7%,
+            rgb(255 255 255 / 0%) 30%,
+            rgb(255 255 255 / 0%) 88%,
+            rgb(255 255 255 / 8%) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgb(34 38 36 / 72%) 0%,
+            rgb(16 18 17 / 82%) 46%,
+            rgb(9 11 10 / 87%) 100%
+        );
+    box-shadow: var(--interrupt-cap-shadow);
+    color: var(--interrupt-legend);
+    letter-spacing: 0.07em;
+    text-shadow: 0 1px 1px rgb(0 0 0 / 62%);
+    transform: translateY(var(--interrupt-cap-travel));
+    transition:
+        transform 150ms var(--interrupt-cap-return),
+        inset 150ms var(--interrupt-cap-return),
+        box-shadow 150ms ease-out,
+        color 150ms ease-out,
+        filter 140ms ease-out;
+}
+.interrupt-button:hover .interrupt-button-cap {
+    filter: brightness(1.12);
+}
+.interrupt-button:focus-visible {
+    outline: 2px solid var(--accent-strong, #2959aa);
+    outline-offset: 3px;
+}
+.interrupt-button:active,
+.interrupt-button.pressed {
+    --interrupt-cap-travel: 6px;
+    --interrupt-cap-inset: 0 3px 0 3px;
+    --interrupt-cap-shadow:
+        inset 0 6px 7px rgb(0 0 0 / 60%),
+        inset 0 0 10px rgb(0 0 0 / 28%);
+    --interrupt-lift: 0 1px 1px rgb(0 0 0 / 20%);
+    --interrupt-legend: rgb(212 232 166 / 62%);
+}
+.interrupt-button:active .interrupt-button-cap,
+.interrupt-button.pressed .interrupt-button-cap {
+    transition-duration: 70ms;
+    transition-timing-function: ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+    .interrupt-button-cap {
+        transition: none;
+    }
+}
